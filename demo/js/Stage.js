@@ -25,7 +25,7 @@ window.Stage = function Stage(aCanvas){
 		c.fillStyle = 'white';
 		c.font = '64px DOS_2';
 		c.textBaseline = 'top';
-		var text = "VGA Pattern";
+		var text = "PatternVGA.js";
 		var textWidth = c.measureText(text).width;
 		c.fillText(text, canvas.width/2-textWidth/2, canvas.height/2-32);
 
