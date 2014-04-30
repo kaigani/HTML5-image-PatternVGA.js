@@ -49,7 +49,8 @@
 				var gui = new dat.GUI();
 				var guiData = {
 
-					bitmap : 1 , 
+					bitmap : 1 ,
+					rgbaSettings : { r: 255, g: 255, b: 255, a: 255 }, 
 					scale : 3 , 
 					speed: 30 ,
 					pause : false ,
@@ -57,6 +58,13 @@
 				};
 
 				gui.add(guiData,'bitmap',0,4095).step(1).listen().onChange(update);
+
+				var f = gui.addFolder('RGBA Settings');
+				f.add(guiData.rgbaSettings,'r',0,255).step(1).onChange(update);
+				f.add(guiData.rgbaSettings,'g',0,255).step(1).onChange(update);
+				f.add(guiData.rgbaSettings,'b',0,255).step(1).onChange(update);
+				f.add(guiData.rgbaSettings,'a',0,255).step(1).onChange(update);
+
 				gui.add(guiData,'scale',{'1x':1,'2x':2,'3x':3,'4x':4,'5x':5,'6x':6,'7x':7,'8x':8}).onChange(update);
 				gui.add(guiData,'speed',{'Warp':1,'Very Fast':10,'Fast':20,'Medium':30,'Slow':60,'Very Slow':120}).onChange(update);
 				gui.add(guiData,'pause').onChange(update);
@@ -95,7 +103,7 @@
 						// UPDATE STAGE
 						if(guiData.pause || count%guiData.speed === 0){
 							stage.update();
-							stage.drawPattern(guiData.bitmap,guiData.scale);
+							stage.drawPattern(guiData.bitmap,guiData.scale,guiData.rgbaSettings);
 							if(!guiData.pause){
 								if(guiData.random){
 									guiData.bitmap = Math.floor(Math.random()*4096);

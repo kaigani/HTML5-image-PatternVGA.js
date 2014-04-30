@@ -11,14 +11,14 @@ window.Stage = function Stage(aCanvas){
 	this.update = function(){
 		c.clearRect(0,0,canvas.width,canvas.height);
 		
-		c.fillStyle = 'orangered'; // in case of failure - background will be orange red
-		c.fillRect(0,0,canvas.width,canvas.height);
+		//c.fillStyle = 'orangered'; // in case of failure - background will be orange red
+		//c.fillRect(0,0,canvas.width,canvas.height);
 	};
 
-	this.drawPattern = function(bitmap,scale){
+	this.drawPattern = function(bitmap,scale,rgbaSettings){
 
 		// Fill the canvas with the pattern
-		c.fillStyle = canvasPatternVGA(bitmap,scale);
+		c.fillStyle = canvasPatternVGA(bitmap,scale,rgbaSettings);
 		c.fillRect(0,0,canvas.width,canvas.height);
 
 		// Title text

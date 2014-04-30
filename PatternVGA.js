@@ -29,7 +29,10 @@
 
 (function(window){
 
-window.imagePatternVGA = function imagePatternVGA(bitmap,scale){
+window.imagePatternVGA = function imagePatternVGA(bitmap,scale,rgbaSettings){
+
+	rgbaSettings = rgbaSettings || {r:255,g:255,b:255,a:255};
+	rgbaSettings.a = rgbaSettings.a || 255;
 
 	scale = (scale > 0)?scale:1; // minimum scale:1x1
 
@@ -37,7 +40,7 @@ window.imagePatternVGA = function imagePatternVGA(bitmap,scale){
 
 	var patternData = createImageData(2,2);
 
-	var p = {r:255,g:255,b:255,a:255}; // could define custom red,green,blue values to change palette
+	var p = rgbaSettings; // could define custom red,green,blue values to change palette
 
 	var bit_red = 1 << 2;
 	var bit_green =  1 << 1;
@@ -63,9 +66,12 @@ window.imagePatternVGA = function imagePatternVGA(bitmap,scale){
 	return imagePattern;
 };
 
-window.canvasPatternVGA = function canvasPatternVGA(bitmap,scale){
+window.canvasPatternVGA = function canvasPatternVGA(bitmap,scale,rgbaSettings){
 
-	var imagePattern = imagePatternVGA(bitmap,scale);
+	rgbaSettings = rgbaSettings || {r:255,g:255,b:255,a:255};
+	rgbaSettings.a = rgbaSettings.a || 255;
+
+	var imagePattern = imagePatternVGA(bitmap,scale,rgbaSettings);
 	var ctx = imagePattern.getContext('2d');
 	var pattern = ctx.createPattern(imagePattern,'repeat');
 
